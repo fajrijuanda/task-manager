@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { addMonths, subMonths } from "date-fns"
+import { addMonths, subMonths, addWeeks, subWeeks, addDays, subDays } from "date-fns"
 import { CalendarHeader } from "@/components/calendar/CalendarHeader"
 import { MonthView } from "@/components/calendar/MonthView"
 import { WeekView } from "@/components/calendar/WeekView"
@@ -55,11 +55,14 @@ export default function CalendarPage() {
 
   const handlePrev = () => {
     if (view === "month") setCurrentDate(subMonths(currentDate, 1))
-    // Add logic for week/day
+    if (view === "week") setCurrentDate(subWeeks(currentDate, 1))
+    if (view === "day") setCurrentDate(subDays(currentDate, 1))
   }
 
   const handleNext = () => {
     if (view === "month") setCurrentDate(addMonths(currentDate, 1))
+    if (view === "week") setCurrentDate(addWeeks(currentDate, 1))
+    if (view === "day") setCurrentDate(addDays(currentDate, 1))
   }
 
   const handleToday = () => setCurrentDate(new Date())

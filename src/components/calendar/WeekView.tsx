@@ -63,7 +63,9 @@ export function WeekView({ currentDate, tasks }: WeekViewProps) {
                         {tasks.filter(t => t.due_date && isSameDay(new Date(t.due_date), day)).map(task => {
                              // Simple positioning based on time string (e.g. "14:00")
                              // In real app, parse start/end times precisely
-                             const [h, m] = (task.due_time || "00:00").split(":").map(Number)
+                             const timeParts = (task.due_time || "00:00").split(":")
+                             const h = parseInt(timeParts[0]) || 0
+                             const m = parseInt(timeParts[1]) || 0
                              const top = (h * 80) + ((m / 60) * 80)
                              
                              return (

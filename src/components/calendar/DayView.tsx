@@ -49,7 +49,9 @@ export function DayView({ currentDate, tasks }: DayViewProps) {
                  {/* Render events for this day */}
                  <div className="relative h-[2304px] w-full"> {/* 24h * 96px */}
                     {tasks.filter(t => t.due_date && new Date(t.due_date).toDateString() === currentDate.toDateString()).map(task => {
-                            const [h, m] = (task.due_time || "00:00").split(":").map(Number)
+                            const timeParts = (task.due_time || "00:00").split(":")
+                            const h = parseInt(timeParts[0]) || 0
+                            const m = parseInt(timeParts[1]) || 0
                             const top = (h * 96) + ((m / 60) * 96)
                             
                             return (
