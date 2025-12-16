@@ -35,7 +35,7 @@ export function DayView({ currentDate, tasks }: DayViewProps) {
              <div className="w-20 shrink-0 border-r bg-muted/5 divide-y text-xs text-muted-foreground font-medium text-right pr-4 pt-1">
                 {hours.map((hour) => (
                    <div key={hour} className="h-24 relative">
-                       <span className="absolute -top-3 right-0">{format(new Date().setHours(hour, 0, 0, 0), "ga")}</span>
+                       <span className="absolute -top-3 right-0">{format(new Date().setHours(hour, 0, 0, 0), "ha")}</span>
                    </div>
                 ))}
              </div>

@@ -46,7 +46,7 @@ export function WeekView({ currentDate, tasks }: WeekViewProps) {
              <div className="w-16 shrink-0 border-r bg-muted/5 divide-y text-xs text-muted-foreground font-medium text-right pr-2">
                 {hours.map((hour) => (
                    <div key={hour} className="h-20 relative">
-                       <span className="absolute -top-2 right-2 bg-background/50 px-1 rounded">{format(new Date().setHours(hour, 0, 0, 0), "ga")}</span>
+                       <span className="absolute -top-2 right-2 bg-background/50 px-1 rounded">{format(new Date().setHours(hour, 0, 0, 0), "ha")}</span>
                    </div>
                 ))}
              </div>
