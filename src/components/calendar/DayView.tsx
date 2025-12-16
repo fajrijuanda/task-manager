@@ -2,16 +2,16 @@
 
 import { format, isToday } from "date-fns"
 import { cn } from "@/lib/utils"
-// Use your Task type here
 import { Task } from "@/types"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface DayViewProps {
   currentDate: Date
   tasks: Task[]
+  onEventClick?: (task: Task) => void
 }
 
-export function DayView({ currentDate, tasks }: DayViewProps) {
+export function DayView({ currentDate, tasks, onEventClick }: DayViewProps) {
   const hours = Array.from({ length: 24 }, (_, i) => i)
 
   return (
@@ -57,10 +57,11 @@ export function DayView({ currentDate, tasks }: DayViewProps) {
                             return (
                                 <div 
                                 key={task.id}
-                                className="absolute left-2 right-4 p-3 rounded-lg border text-sm overflow-hidden shadow hover:z-10 group transition-all"
+                                onClick={() => onEventClick?.(task)}
+                                className="absolute left-2 right-4 p-3 rounded-lg border text-sm overflow-hidden shadow hover:z-10 group transition-all cursor-pointer hover:scale-[1.01]"
                                 style={{
                                     top: `${top}px`,
-                                    height: '80px', // Default
+                                    height: '80px',
                                     backgroundColor: `${task.category?.color || '#3b82f6'}15`, 
                                     color: task.category?.color || '#3b82f6',
                                     borderColor: `${task.category?.color || '#3b82f6'}40`

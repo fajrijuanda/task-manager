@@ -2,16 +2,16 @@
 
 import { format, startOfWeek, eachDayOfInterval, addDays, isSameDay, isToday } from "date-fns"
 import { cn } from "@/lib/utils"
-// Use your Task type here
 import { Task } from "@/types"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface WeekViewProps {
   currentDate: Date
   tasks: Task[]
+  onEventClick?: (task: Task) => void
 }
 
-export function WeekView({ currentDate, tasks }: WeekViewProps) {
+export function WeekView({ currentDate, tasks, onEventClick }: WeekViewProps) {
   const weekStart = startOfWeek(currentDate)
   const weekDays = eachDayOfInterval({
     start: weekStart,
@@ -71,10 +71,11 @@ export function WeekView({ currentDate, tasks }: WeekViewProps) {
                              return (
                                  <div 
                                     key={task.id}
-                                    className="absolute left-1 right-1 p-2 rounded-md border text-xs overflow-hidden shadow-sm hover:z-10 transition-all hover:scale-[1.02]"
+                                    onClick={() => onEventClick?.(task)}
+                                    className="absolute left-1 right-1 p-2 rounded-md border text-xs overflow-hidden shadow-sm hover:z-10 transition-all hover:scale-[1.02] cursor-pointer"
                                     style={{
                                         top: `${top}px`,
-                                        height: '70px', // Default duration 1h (approx)
+                                        height: '70px',
                                         backgroundColor: `${task.category?.color || '#3b82f6'}20`, 
                                         color: task.category?.color || '#3b82f6',
                                         borderLeftWidth: '4px',

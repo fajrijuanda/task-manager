@@ -2,15 +2,15 @@
 
 import { format, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, isToday, startOfMonth, endOfMonth } from "date-fns"
 import { cn } from "@/lib/utils"
-// Use your Task type here
 import { Task } from "@/types"
 
 interface MonthViewProps {
   currentDate: Date
   tasks: Task[]
+  onEventClick?: (task: Task) => void
 }
 
-export function MonthView({ currentDate, tasks }: MonthViewProps) {
+export function MonthView({ currentDate, tasks, onEventClick }: MonthViewProps) {
   const monthStart = startOfWeek(startOfMonth(currentDate))
   const monthEnd = endOfWeek(endOfMonth(currentDate))
   
@@ -37,7 +37,6 @@ export function MonthView({ currentDate, tasks }: MonthViewProps) {
         {calendarDays.map((day, dayIdx) => {
             const isCurrentMonth = isSameMonth(day, currentDate)
             const isDayToday = isToday(day)
-            // Filter tasks for this day - simplistic check, assume task.due_date is absolute date string
             const dayTasks = tasks.filter(t => t.due_date && isSameDay(new Date(t.due_date), day))
             
             return (
@@ -46,7 +45,7 @@ export function MonthView({ currentDate, tasks }: MonthViewProps) {
                     className={cn(
                         "min-h-[60px] md:min-h-[100px] border-b border-r p-1 md:p-2 transition-colors relative group hover:bg-muted/20",
                         !isCurrentMonth && "bg-muted/5 text-muted-foreground/50",
-                        dayIdx % 7 === 6 && "border-r-0" // Remove right border for last col
+                        dayIdx % 7 === 6 && "border-r-0"
                     )}
                 >
                     <div className="flex items-center justify-between pointer-events-none">
@@ -65,7 +64,8 @@ export function MonthView({ currentDate, tasks }: MonthViewProps) {
                         {dayTasks.slice(0, 3).map((task) => (
                              <div 
                                 key={task.id} 
-                                className="text-[10px] px-1.5 py-0.5 rounded truncate border cursor-pointer hover:opacity-80 transition-opacity"
+                                onClick={() => onEventClick?.(task)}
+                                className="text-[10px] px-1.5 py-0.5 rounded truncate border cursor-pointer hover:opacity-80 hover:scale-[1.02] transition-all"
                                 style={{ 
                                     backgroundColor: `${task.category?.color || '#3b82f6'}15`, 
                                     color: task.category?.color || '#3b82f6',

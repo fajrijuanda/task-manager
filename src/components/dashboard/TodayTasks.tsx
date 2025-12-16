@@ -3,7 +3,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn, getPriorityColor } from "@/lib/utils"
 import type { Task } from "@/types"
 import { Clock } from "lucide-react"
@@ -56,7 +55,7 @@ export function TodayTasks() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[300px] pr-4">
+        <div className="space-y-4">
           <div className="space-y-4">
             {MOCK_TASKS.map((task) => {
                const priorityColor = getPriorityColor(task.priority!)
@@ -103,7 +102,7 @@ export function TodayTasks() {
                )
             })}
           </div>
-        </ScrollArea>
+        </div>
       </CardContent>
     </Card>
   )
