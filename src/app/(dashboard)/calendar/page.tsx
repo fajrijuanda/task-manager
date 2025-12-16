@@ -68,7 +68,7 @@ export default function CalendarPage() {
   const handleToday = () => setCurrentDate(new Date())
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
+    <div className="flex flex-col h-[calc(100vh-10rem)] md:h-[calc(100vh-8rem)] min-h-0">
       <CalendarHeader
         currentDate={currentDate}
         onPrev={handlePrev}

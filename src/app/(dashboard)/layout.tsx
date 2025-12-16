@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header"
 import { Sidebar } from "@/components/layout/Sidebar"
 import { MobileNav } from "@/components/layout/MobileNav"
+import { TaskModalProvider } from "@/components/modals/task-modal-provider"
 
 export default function DashboardLayout({
   children,
@@ -22,6 +23,9 @@ export default function DashboardLayout({
         {/* Mobile Navigation */}
         <MobileNav />
       </div>
+
+      {/* Global Modal Provider */}
+      <TaskModalProvider />
     </div>
   )
 }

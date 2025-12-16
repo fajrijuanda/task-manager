@@ -44,7 +44,7 @@ export function MonthView({ currentDate, tasks }: MonthViewProps) {
                 <div
                     key={day.toString()}
                     className={cn(
-                        "min-h-[100px] border-b border-r p-2 transition-colors relative group hover:bg-muted/20",
+                        "min-h-[60px] md:min-h-[100px] border-b border-r p-1 md:p-2 transition-colors relative group hover:bg-muted/20",
                         !isCurrentMonth && "bg-muted/5 text-muted-foreground/50",
                         dayIdx % 7 === 6 && "border-r-0" // Remove right border for last col
                     )}
@@ -61,7 +61,7 @@ export function MonthView({ currentDate, tasks }: MonthViewProps) {
                     </div>
                     
                     {/* Tasks/Events List */}
-                    <div className="mt-1 space-y-1 overflow-hidden max-h-[80px]">
+                    <div className="mt-1 space-y-0.5 md:space-y-1 overflow-hidden max-h-[40px] md:max-h-[80px]">
                         {dayTasks.slice(0, 3).map((task) => (
                              <div 
                                 key={task.id} 
