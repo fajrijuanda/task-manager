@@ -45,7 +45,7 @@ const MOCK_TASKS: Partial<Task>[] = [
 
 export function TodayTasks() {
   return (
-    <Card className="col-span-1 md:col-span-2 lg:col-span-3 glass h-full">
+    <Card className="col-span-1 md:col-span-2 lg:col-span-3 glass">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
             <span>Today&apos;s Tasks</span>
@@ -55,8 +55,7 @@ export function TodayTasks() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="space-y-4">
+        <div className="space-y-3">
             {MOCK_TASKS.map((task) => {
                const priorityColor = getPriorityColor(task.priority!)
                return (
@@ -101,7 +100,6 @@ export function TodayTasks() {
                 </div>
                )
             })}
-          </div>
         </div>
       </CardContent>
     </Card>
