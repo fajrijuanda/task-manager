@@ -4,8 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { cn, getPriorityColor, formatTime } from "@/lib/utils"
+import { cn, getPriorityColor } from "@/lib/utils"
 import type { Task } from "@/types"
+import { Clock } from "lucide-react"
 
 // Mock data - replace with real data later
 const MOCK_TASKS: Partial<Task>[] = [
@@ -14,7 +15,7 @@ const MOCK_TASKS: Partial<Task>[] = [
     title: "Morning Standup Team A",
     due_time: "09:00",
     priority: "high",
-    category: { id: "c1", name: "Work", color: "#7C6AFA", created_at: "", user_id: "" },
+    category: { id: "c1", name: "Work", color: "#7C6AFA", created_at: "", user_id: "", icon: null },
     status: "pending"
   },
   {
@@ -22,7 +23,7 @@ const MOCK_TASKS: Partial<Task>[] = [
     title: "Review PR #123",
     due_time: "10:30",
     priority: "medium",
-    category: { id: "c1", name: "Work", color: "#7C6AFA", created_at: "", user_id: "" },
+    category: { id: "c1", name: "Work", color: "#7C6AFA", created_at: "", user_id: "", icon: null },
     status: "pending"
   },
   {
@@ -30,7 +31,7 @@ const MOCK_TASKS: Partial<Task>[] = [
     title: "Lunch with Client",
     due_time: "12:00",
     priority: "low",
-    category: { id: "c2", name: "Personal", color: "#F59E0B", created_at: "", user_id: "" },
+    category: { id: "c2", name: "Personal", color: "#F59E0B", created_at: "", user_id: "", icon: null },
     status: "pending"
   },
   {
@@ -38,7 +39,7 @@ const MOCK_TASKS: Partial<Task>[] = [
     title: "Update Documentation",
     due_time: "14:00",
     priority: "medium",
-    category: { id: "c1", name: "Work", color: "#7C6AFA", created_at: "", user_id: "" },
+    category: { id: "c1", name: "Work", color: "#7C6AFA", created_at: "", user_id: "", icon: null },
     status: "completed"
   },
 ]
@@ -48,7 +49,7 @@ export function TodayTasks() {
     <Card className="col-span-1 md:col-span-2 lg:col-span-3 glass h-full">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-            <span>Today's Tasks</span>
+            <span>Today&apos;s Tasks</span>
             <span className="text-sm font-normal text-muted-foreground">
                 {new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}
             </span>
@@ -107,5 +108,3 @@ export function TodayTasks() {
     </Card>
   )
 }
-
-import { Clock } from "lucide-react"
