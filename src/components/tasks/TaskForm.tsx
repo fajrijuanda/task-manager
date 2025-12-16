@@ -40,9 +40,11 @@ export function TaskForm({ children, open, onOpenChange }: TaskFormProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>
-        {children}
-      </DialogTrigger>
+      {children && (
+        <DialogTrigger asChild>
+          {children}
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-[500px] glass">
         <DialogHeader>
           <DialogTitle>Create New Task</DialogTitle>

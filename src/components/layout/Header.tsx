@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Sidebar } from "./Sidebar"
 
 export function Header() {
@@ -43,10 +44,38 @@ export function Header() {
       <div className="flex items-center gap-4">
         <ThemeToggle />
         
-        <Button variant="ghost" size="icon" className="relative h-9 w-9 rounded-full">
-          <Bell className="h-5 w-5" />
-          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-background" />
-        </Button>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="ghost" size="icon" className="relative h-9 w-9 rounded-full">
+              <Bell className="h-5 w-5" />
+              <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-background" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-80 p-0" align="end">
+             <div className="flex items-center justify-between px-4 py-2 border-b">
+                <p className="font-semibold text-sm">Notifications</p>
+                <span className="text-xs text-muted-foreground">Mark all as read</span>
+             </div>
+             <div className="grid gap-1 p-1 max-h-[300px] overflow-y-auto">
+                 {[
+                    { title: "Project meeting", time: "1 hour ago", desc: "Team meeting for Q4 planning" },
+                    { title: "Task overdue", time: "2 hours ago", desc: "Review marketing copy is overdue", active: true },
+                    { title: "New comment", time: "5 hours ago", desc: "Sarah commented on 'Homepage Design'" }
+                 ].map((item, i) => (
+                    <div key={i} className={`flex flex-col gap-1 p-3 rounded-md hover:bg-muted/50 cursor-pointer ${item.active ? 'bg-muted/20' : ''}`}>
+                       <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{item.title}</span>
+                          <span className="text-xs text-muted-foreground">{item.time}</span>
+                       </div>
+                       <p className="text-xs text-muted-foreground line-clamp-1">{item.desc}</p>
+                    </div>
+                 ))}
+             </div>
+             <div className="p-2 border-t text-center">
+                <Button variant="ghost" size="sm" className="w-full h-8 text-xs">View all notifications</Button>
+             </div>
+          </PopoverContent>
+        </Popover>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

@@ -11,7 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { CalendarView } from "@/types" // Ensure this type exists or define it locally if strict
+import { CalendarView } from "@/types"
+import { useTaskModal } from "@/hooks/use-task-modal"
 
 interface CalendarHeaderProps {
   currentDate: Date
@@ -23,6 +24,7 @@ interface CalendarHeaderProps {
 }
 
 export function CalendarHeader({ currentDate, onPrev, onNext, onToday, view, onViewChange }: CalendarHeaderProps) {
+  const taskModal = useTaskModal()
   return (
     <div className="flex items-center justify-between mb-4 px-4 py-2 bg-gradient-to-r from-card to-background/50 backdrop-blur-sm border rounded-xl shadow-sm">
       <div className="flex items-center gap-4">
@@ -69,7 +71,12 @@ export function CalendarHeader({ currentDate, onPrev, onNext, onToday, view, onV
             </Select>
          </div>
          
-         <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90 ml-2">
+         <Button 
+            variant="default" 
+            size="sm" 
+            className="bg-primary hover:bg-primary/90 ml-2"
+            onClick={taskModal.onOpen}
+         >
             <CalendarIcon className="mr-2 h-3.5 w-3.5" />
             New Event
          </Button>
