@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Task Manager - Manage Your Tasks Effortlessly",
-  description: "A modern task management application with calendar view, inspired by Google Calendar. Manage, track, and organize your tasks with ease.",
-  keywords: ["task manager", "calendar", "productivity", "todo", "schedule"],
+  title: "Planbrix - Smart Task & Schedule Management",
+  description: "A modern task management application with calendar view. Manage, track, and organize your tasks with ease.",
+  keywords: ["planbrix", "task manager", "calendar", "productivity", "todo", "schedule"],
 };
 
 export default function RootLayout({

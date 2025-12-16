@@ -24,7 +24,7 @@ export default function AuthLayout({
                 </svg>
             </div>
             <h1 className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">
-                TaskFlow
+                Planbrix
             </h1>
         </div>
         {children}
