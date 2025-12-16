@@ -49,7 +49,7 @@ export function MobileNav() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-      <div className="flex h-16 items-center justify-around border-t bg-background/80 px-4 pb- safe glass backdrop-blur-xl">
+      <div className="flex h-16 items-center justify-around border-t bg-background/95 px-4 pb-safe glass backdrop-blur-xl safe-area-bottom">
         {routes.map((route, index) => {
           if (route.isFab) {
              return (
