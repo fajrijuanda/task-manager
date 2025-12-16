@@ -65,7 +65,7 @@ export function Sidebar({ className }: SidebarProps) {
               <CheckSquare className="w-5 h-5 text-primary-foreground" />
             </div>
             <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">
-              TaskFlow
+              Planbrix
             </h1>
           </Link>
           
