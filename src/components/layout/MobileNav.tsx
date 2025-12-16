@@ -12,9 +12,11 @@ import {
   Home,
   Tags
 } from "lucide-react"
+import { useTaskModal } from "@/hooks/use-task-modal"
 
 export function MobileNav() {
   const pathname = usePathname()
+  const taskModal = useTaskModal()
 
   const routes = [
     {
@@ -52,7 +54,8 @@ export function MobileNav() {
           if (route.isFab) {
              return (
                 <div key={index} className="relative -top-5">
-                    <Button 
+                     <Button 
+                        onClick={taskModal.onOpen}
                         size="icon" 
                         className="h-12 w-12 rounded-full shadow-lg bg-primary hover:bg-primary/90 text-primary-foreground"
                     >

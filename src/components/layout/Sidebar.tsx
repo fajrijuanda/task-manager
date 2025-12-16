@@ -12,6 +12,7 @@ import {
   Tags,
   Plus
 } from "lucide-react"
+import { useTaskModal } from "@/hooks/use-task-modal"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
@@ -19,6 +20,7 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname()
+  const taskModal = useTaskModal()
 
   const routes = [
     {
@@ -68,7 +70,11 @@ export function Sidebar({ className }: SidebarProps) {
           </Link>
           
           <div className="px-3 mb-6">
-             <Button className="w-full justify-start bg-primary/10 hover:bg-primary/20 text-primary border-0" variant="outline">
+             <Button 
+                onClick={taskModal.onOpen}
+                className="w-full justify-start bg-primary/10 hover:bg-primary/20 text-primary border-0" 
+                variant="outline"
+             >
                 <Plus className="mr-2 h-4 w-4" />
                 New Task
              </Button>

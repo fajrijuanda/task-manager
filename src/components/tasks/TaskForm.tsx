@@ -23,24 +23,25 @@ import {
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { format } from "date-fns"
-import { Calendar as CalendarIcon, Clock, Plus } from "lucide-react"
+import { Calendar as CalendarIcon, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { Switch } from "@/components/ui/switch"
 
-export function TaskForm({ children }: { children?: React.ReactNode }) {
+interface TaskFormProps {
+    children?: React.ReactNode
+    open?: boolean
+    onOpenChange?: (open: boolean) => void
+}
+
+export function TaskForm({ children, open, onOpenChange }: TaskFormProps) {
   const [date, setDate] = useState<Date>()
   const [isRecurring, setIsRecurring] = useState(false)
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        {children || (
-            <Button className="bg-primary hover:bg-primary/90">
-                <Plus className="mr-2 h-4 w-4" />
-                New Task
-            </Button>
-        )}
+        {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px] glass">
         <DialogHeader>
