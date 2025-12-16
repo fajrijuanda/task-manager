@@ -1,121 +1,60 @@
-// Task Types
-export type Priority = "low" | "medium" | "high" | "urgent";
-export type TaskStatus = "pending" | "in_progress" | "completed" | "cancelled";
-
-export interface Task {
-  id: string;
-  user_id: string;
-  category_id: string | null;
-  title: string;
-  description: string | null;
-  due_date: string | null;
-  due_time: string | null;
-  start_date: string | null;
-  start_time: string | null;
-  all_day: boolean;
-  status: TaskStatus;
-  priority: Priority;
-  is_recurring: boolean;
-  recurrence_rule: Record<string, unknown> | null;
-  parent_task_id: string | null;
-  completed_at: string | null;
-  deleted_at: string | null;
-  created_at: string;
-  updated_at: string;
-  category?: Category;
-  subtasks?: Subtask[];
-}
-
-export interface Subtask {
-  id: string;
-  task_id: string;
-  title: string;
-  is_completed: boolean;
-  order_index: number;
-  created_at: string;
-}
+export type Priority = "low" | "medium" | "high" | "urgent"
+export type TaskStatus = "pending" | "in-progress" | "completed"
 
 export interface Category {
-  id: string;
-  user_id: string;
-  name: string;
-  color: string;
-  icon: string | null;
-  created_at: string;
+  id: string
+  name: string
+  color: string
+  icon?: string | null
+  user_id: string
+  created_at: string
+}
+
+export interface Task {
+  id: string
+  user_id: string
+  title: string
+  description?: string | null
+  due_date?: string | null
+  due_time?: string | null
+  start_date?: string | null
+  start_time?: string | null
+  all_day: boolean
+  priority: Priority
+  status: TaskStatus
+  category_id?: string | null
+  category?: Category
+  is_recurring: boolean
+  recurrence_rule?: string | null
+  parent_task_id?: string | null
+  created_at: string
+  updated_at: string
+  completed_at?: string | null
+  deleted_at?: string | null
 }
 
 export interface Reminder {
-  id: string;
-  task_id: string;
-  remind_at: string;
-  type: "notification" | "email" | "whatsapp";
-  is_sent: boolean;
-  created_at: string;
+  id: string
+  task_id: string
+  remind_at: string
+  created_at: string
 }
 
-export interface Profile {
-  id: string;
-  full_name: string | null;
-  avatar_url: string | null;
-  phone_number: string | null;
-  timezone: string;
-  notification_preferences: Record<string, unknown>;
-  created_at: string;
-  updated_at: string;
-}
-
-// Form Types
-export interface TaskFormData {
-  title: string;
-  description: string;
-  due_date: Date | null;
-  due_time: string;
-  start_date: Date | null;
-  start_time: string;
-  all_day: boolean;
-  priority: Priority;
-  category_id: string | null;
-  is_recurring: boolean;
-  recurrence_rule: Record<string, unknown> | null;
-}
-
-export interface CategoryFormData {
-  name: string;
-  color: string;
-  icon: string | null;
+export type Profile = {
+    id: string
+    email: string
+    full_name?: string
+    avatar_url?: string
 }
 
 // Calendar Types
-export type CalendarView = "month" | "week" | "day";
+export type CalendarView = "month" | "week" | "day" | "list"
 
 export interface CalendarEvent {
-  id: string;
-  title: string;
-  start: Date;
-  end: Date;
-  allDay: boolean;
-  priority: Priority;
-  color: string;
-  task: Task;
-}
-
-// Stats Types
-export interface TaskStats {
-  total: number;
-  completed: number;
-  pending: number;
-  overdue: number;
-  completionRate: number;
-}
-
-// Filter Types
-export interface TaskFilters {
-  status: TaskStatus | "all";
-  priority: Priority | "all";
-  category_id: string | "all";
-  dateRange: {
-    start: Date | null;
-    end: Date | null;
-  };
-  search: string;
+  id: string
+  title: string
+  start: Date
+  end: Date
+  allDay?: boolean
+  resource?: unknown
 }

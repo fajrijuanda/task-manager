@@ -13,7 +13,9 @@ import {
   Plus
 } from "lucide-react"
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
 
 export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname()
